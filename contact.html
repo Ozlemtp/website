@@ -11,6 +11,7 @@
 	<script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
+	<img src="images/bg.jpg" id="bg" alt="">
 	<div id="header">
 		<a href="index.html" class="logo">
 			<img src="images/logo.png" alt="">
@@ -33,7 +34,15 @@
 			<input type="text" name="fname" id="fname" placeholder="name">
 			<input type="text" name="email" id="email" placeholder="email">
 			<input type="text" name="phone" id="phone" placeholder="phone number">
-			<textarea name="message" id="message">message</textarea>
+			<textarea name="message" id="message" placeholder="Your message here"></textarea>
+			<div id="resultP" class="success-msg">
+				<i class="fa fa-check"></i>
+				E-mail sent, thank you for your interest.
+			</div>
+			<div id="resultN" class="error-msg">
+				<i class="fa fa-times-circle"></i>
+				E-mail could not send, please try again later.
+			  </div>
 			<input type="button" name="send" id="send" value="Send" onclick="sendEmail()">
 		</form>
 		</div>
@@ -62,7 +71,15 @@
                     Subject: "Contact",
                     Body: "<html><h4>New user</h4><p>Email: " + email + "<br>Name: " + name + "<br>Phone: " + phone + "<br>Message: " + message + "</p></html>"
                 }).then(
-					message => alert("Thank You For Submitting The Form!")
+					message => {
+						if (message == "OK")
+						{
+							document.getElementById('resultP').style.display = "block";
+						} else 
+						{
+							document.getElementById('resultN').style.display = "block";
+						}
+					}
 				);
 			}
 		</script>
