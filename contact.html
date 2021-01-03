@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width : 568px)">
 	<script type="text/javascript" src="js/mobile.js"></script>
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -28,12 +29,12 @@
 	</div>
 	<div id="body">
 		<h1><span>let's keep in touch</span></h1>
-		<form action="contact.html">
+		<form action="sendEmail()">
 			<input type="text" name="fname" id="fname" placeholder="name">
 			<input type="text" name="email" id="email" placeholder="email">
 			<input type="text" name="phone" id="phone" placeholder="phone number">
 			<textarea name="message" id="message">message</textarea>
-			<input type="submit" name="send" id="send" value="send">
+			<input type="button" name="send" id="send" value="Send" onclick="sendEmail()">
 		</form>
 		</div>
 		<div id="footer">
@@ -42,10 +43,28 @@
 				<p><br />Contact us +44 7922 320934</p>
 				<ul>
 					<li>
-						<a href="https://www.instagram.com/bayraktarbookkepingltd/?hl=en" id="instagram">instagram</a>
+						<a href="https://www.instagram.com/bayraktarbookkepinguk/?igshid=or7mk7i0fqaf"</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<script>
+			function sendEmail() {
+				var name = document.getElementById('fname').value
+				var email = document.getElementById('email').value
+				var phone = document.getElementById('phone').value
+				var message = document.getElementById('message').value
+
+                Email.send({
+                    SecureToken: "5b822806-137c-40f2-98c8-ae11056beccd",
+                    To: 'fatmapolat1987@gmail.com',
+                    From: 'uddarendeli@gmail.com',
+                    Subject: "Contact - Mustache Enthusiast",
+                    Body: "<html><h4>New user</h4><p>Email: " + email + "<br>Name: " + name + "<br>Phone: " + phone + "<br>Message: " + message + "</p></html>"
+                }).then(
+					message => alert(message)
+				);
+			}
+		</script>
 	</body>
 	</html>
